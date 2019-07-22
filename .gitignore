@@ -1,2 +1,5 @@
 .*.sw*
 .local
+
+__pycache__
+
