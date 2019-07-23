@@ -34,6 +34,10 @@ def main_menu():
     print('---- MENU ----\n\n  Here are your choices:')
     for i, c in enumerate(choices,1): print(f'   {i}) {c.title()}')
 
+def stats_menu(teams):
+    team_names = [t['team'] for t in teams]
+    for i, t in enumerate(team_names, 1): print(f'{i}) {t}')
+
 def show_stats(teams, idx):
     # get selected team
     team, players = teams[idx].values()
@@ -55,4 +59,10 @@ if __name__ == '__main__':
         main_menu()
         print()
         main_choice = int(input('Enter an option > '))
+
+        if main_choice == 1:
+            stats_menu(teams)
+            print()
+            team_choice = int(input('Enter an option > '))
+            show_stats(teams, team_choice-1)
 
