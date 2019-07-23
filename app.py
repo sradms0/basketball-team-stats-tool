@@ -49,6 +49,11 @@ def show_stats(teams, idx):
     print('-'*len(header))
     print(f'Total players: {len(player_names)}')
     print(f'Players: \n\t{", ".join(player_names)}')
+
+def prompt():
+    res = int(input('\n\nEnter an option > '))
+    print('\n')
+    return res
     
 
 if __name__ == '__main__':
@@ -57,12 +62,10 @@ if __name__ == '__main__':
 
     while main_choice != 2:
         main_menu()
-        print()
-        main_choice = int(input('Enter an option > '))
+        main_choice = prompt()
 
         if main_choice == 1:
             stats_menu(teams)
-            print()
-            team_choice = int(input('Enter an option > '))
+            team_choice = prompt()
             show_stats(teams, team_choice-1)
 
