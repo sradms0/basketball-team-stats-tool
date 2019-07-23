@@ -29,6 +29,11 @@ def clean_data():
 
     return teams
 
+def main_menu():
+    choices = ['display team stats', 'quit']
+    print('---- MENU ----\n\n  Here are your choices:')
+    for i, c in enumerate(choices,1): print(f'   {i}) {c.title()}')
+
 def show_stats(teams, idx):
     # get selected team
     team, players = teams[idx].values()
@@ -44,8 +49,10 @@ def show_stats(teams, idx):
 
 if __name__ == '__main__':
     teams = clean_data()
-    for i in range(len(teams)): 
-        show_stats(teams, i);
-        print('\n')
+    main_choice = 0
 
+    while main_choice != 2:
+        main_menu()
+        print()
+        main_choice = int(input('Enter an option > '))
 
