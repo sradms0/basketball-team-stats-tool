@@ -55,6 +55,8 @@ def prompt():
     print('\n')
     return res
     
+def cont():
+    input('\n\nPress ENTER to continue...\n\n')
 
 if __name__ == '__main__':
     teams = clean_data()
@@ -68,4 +70,4 @@ if __name__ == '__main__':
             stats_menu(teams)
             team_choice = prompt()
             show_stats(teams, team_choice-1)
-
+            cont() 
