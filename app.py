@@ -24,20 +24,28 @@ def clean_data():
         teams.append({'team': team, 'players': players})
 
         # update ranges
-        start = start+per_team
+        start += per_team
         stop = start+per_team
 
     return teams
 
+def show_stats(teams, idx):
+    # get selected team
+    team, players = teams[idx].values()
+    header = f'Team: {team} Stats'
+    # collect player names
+    player_names = [p['name'] for p in players]
+
+    print(header)
+    print('-'*len(header))
+    print(f'Total players: {len(player_names)}')
+    print(f'Players: \n\t{", ".join(player_names)}')
+    
 
 if __name__ == '__main__':
-    for dat in clean_data():
-        team = dat['team']
-        players = dat['players']
-
-        print(f'Team: {team}')
-        print('Players:')
-        for player in players: print(player)
-        print()
+    teams = clean_data()
+    for i in range(len(teams)): 
+        show_stats(teams, i);
+        print('\n')
 
 
