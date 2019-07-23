@@ -46,16 +46,35 @@ def stats_menu(teams):
     for i, t in enumerate(team_names, 1): print(f'{i}) {t}')
 
 def show_stats(teams, idx):
-    # get selected team
     team, players = teams[idx].values()
-    header = f'Team: {team} Stats'
-    # collect player names
-    player_names = [p['name'] for p in players]
+    player_names = []
+    guardian_names = []
+    experienced = 0
+    inexperienced = 0
+    total_height = 0
 
+    # collect/calculate data to display
+    for p in players:
+        player_names.append(p['name'])
+        guardian_names += p['guardians']
+        total_height += p['height']
+
+        if p['experience']: experienced += 1
+        else: inexperienced += 1
+
+    # format display strings
+    header = f'Team: {team} Stats'
+    stats_display = [
+        f'Total players: {len(player_names)}\nPlayers:\n  {", ".join(player_names)}\n',
+        f'Total guardians: {len(guardian_names)}\nGuardians:\n  {", ".join(guardian_names)}\n',
+        f'Experienced players: {experienced}\nInexperienced players: {inexperienced}\n',
+        f'Average team height: { round(total_height / len(players), 2)} inches'
+    ]
+
+    # display data
     print(header)
     print('-'*len(header))
-    print(f'Total players: {len(player_names)}')
-    print(f'Players: \n  {", ".join(player_names)}')
+    for s in stats_display: print(s)
 
 def prompt():
     res = int(input('\n\nEnter an option > '))
