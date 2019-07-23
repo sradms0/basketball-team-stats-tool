@@ -19,10 +19,11 @@ def clean_data():
         players = constants.PLAYERS[start:stop]
 
         for player in players:
-            # clean up height and experience data
+            # clean up experience, guardians, and height data
             name, guardians, experience, height = player.values()
-            player['height'] = int(height[:2])
             player['experience'] = True if experience == 'YES' else False
+            player['guardians'] = guardians.split(' and ')
+            player['height'] = int(height[:2])
 
         # add new team with players
         teams.append({'team': team, 'players': players})
@@ -54,7 +55,7 @@ def show_stats(teams, idx):
     print(header)
     print('-'*len(header))
     print(f'Total players: {len(player_names)}')
-    print(f'Players: \n\t{", ".join(player_names)}')
+    print(f'Players: \n  {", ".join(player_names)}')
 
 def prompt():
     res = int(input('\n\nEnter an option > '))
