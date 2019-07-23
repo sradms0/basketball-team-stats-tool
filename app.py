@@ -33,6 +33,8 @@ def main_menu():
     choices = ['display team stats', 'quit']
     print('---- MENU ----\n\n  Here are your choices:')
     for i, c in enumerate(choices,1): print(f'   {i}) {c.title()}')
+    # return len of choices; 'quit' is always at the end
+    return len(choices)
 
 def stats_menu(teams):
     team_names = [t['team'] for t in teams]
@@ -62,8 +64,7 @@ if __name__ == '__main__':
     teams = clean_data()
     main_choice = 0
 
-    while main_choice != 2:
-        main_menu()
+    while main_choice != main_menu():
         main_choice = prompt()
 
         if main_choice == 1:
