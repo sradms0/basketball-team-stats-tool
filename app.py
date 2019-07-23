@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 
 import constants
+from os import system, name
 from math import ceil
+
+def clear_screen():
+    system('cls' if name == 'nt' else 'clear')
 
 def clean_data():
     # calculate players per team
@@ -72,3 +76,5 @@ if __name__ == '__main__':
             team_choice = prompt()
             show_stats(teams, team_choice-1)
             cont() 
+
+        clear_screen()
